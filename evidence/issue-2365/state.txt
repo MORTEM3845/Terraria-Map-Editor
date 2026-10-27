@@ -1,0 +1,6 @@
+Disposable generated world fixture: Issue 2365 Disposable Fixture (v326)
+
+Before: DownedFishron=True; DownedPirates=False
+After checkbox edit + save/reload: DownedFishron=True; DownedPirates=True
+
+The Fishron checkbox remained checked while the Flying Dutchman checkbox changed from unchecked to checked.
