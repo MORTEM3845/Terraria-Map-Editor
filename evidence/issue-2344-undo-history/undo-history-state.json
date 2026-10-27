@@ -1,0 +1,156 @@
+{
+  "commandStateAfterEdits": {
+    "currentIndex": 3,
+    "entries": [
+      {
+        "index": 0,
+        "label": "Before first edit"
+      },
+      {
+        "index": 1,
+        "label": "After edit 1"
+      },
+      {
+        "index": 2,
+        "label": "After edit 2"
+      },
+      {
+        "index": 3,
+        "label": "After edit 3"
+      }
+    ]
+  },
+  "selectedPointOne": {
+    "status": "selected",
+    "index": 1,
+    "changedTileCount": 2
+  },
+  "commandStateAtPointOne": {
+    "currentIndex": 1,
+    "entries": [
+      {
+        "index": 0,
+        "label": "Before first edit"
+      },
+      {
+        "index": 1,
+        "label": "After edit 1"
+      },
+      {
+        "index": 2,
+        "label": "After edit 2"
+      },
+      {
+        "index": 3,
+        "label": "After edit 3"
+      }
+    ]
+  },
+  "tilesAtPointOne": [
+    {
+      "x": 2108,
+      "y": 202,
+      "isActive": true,
+      "type": 1,
+      "wall": 0,
+      "liquidAmount": 0
+    },
+    {
+      "x": 2109,
+      "y": 202,
+      "isActive": false,
+      "type": 0,
+      "wall": 0,
+      "liquidAmount": 0
+    },
+    {
+      "x": 2110,
+      "y": 202,
+      "isActive": false,
+      "type": 0,
+      "wall": 0,
+      "liquidAmount": 0
+    }
+  ],
+  "selectedLatestPoint": {
+    "status": "selected",
+    "index": 3,
+    "changedTileCount": 2
+  },
+  "commandStateAtLatestPoint": {
+    "currentIndex": 3,
+    "entries": [
+      {
+        "index": 0,
+        "label": "Before first edit"
+      },
+      {
+        "index": 1,
+        "label": "After edit 1"
+      },
+      {
+        "index": 2,
+        "label": "After edit 2"
+      },
+      {
+        "index": 3,
+        "label": "After edit 3"
+      }
+    ]
+  },
+  "tilesAtLatestPoint": [
+    {
+      "x": 2108,
+      "y": 202,
+      "isActive": true,
+      "type": 1,
+      "wall": 0,
+      "liquidAmount": 0
+    },
+    {
+      "x": 2109,
+      "y": 202,
+      "isActive": true,
+      "type": 1,
+      "wall": 0,
+      "liquidAmount": 0
+    },
+    {
+      "x": 2110,
+      "y": 202,
+      "isActive": true,
+      "type": 1,
+      "wall": 0,
+      "liquidAmount": 0
+    }
+  ],
+  "machineState": {
+    "operation": "completed:paint-tile",
+    "undoHistory": {
+      "currentIndex": 3,
+      "entries": [
+        {
+          "index": 0,
+          "label": "Before first edit"
+        },
+        {
+          "index": 1,
+          "label": "After edit 1"
+        },
+        {
+          "index": 2,
+          "label": "After edit 2"
+        },
+        {
+          "index": 3,
+          "label": "After edit 3"
+        }
+      ]
+    },
+    "world": {
+      "width": 4200,
+      "height": 1200,
+      "version": 273
+    }
+  }
+}
