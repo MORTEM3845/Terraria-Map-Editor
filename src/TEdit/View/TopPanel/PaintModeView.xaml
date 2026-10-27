@@ -209,6 +209,23 @@
                       SelectedValuePath="Value" MinWidth="100"
                       ItemTemplate="{StaticResource EnumTemplate}" />
             </StackPanel>
+            <GroupBox Header="Placement Grid" Width="190" Margin="2">
+                <StackPanel Margin="3">
+                    <CheckBox Content="Snap to grid" IsChecked="{Binding Brush.IsGridSnapEnabled, Mode=TwoWay}" />
+                    <UniformGrid Columns="4" Margin="0,3,0,0">
+                        <TextBlock Text="W" ToolTip="Grid width" />
+                        <TextBox Text="{Binding Brush.GridWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Brush.IsGridSnapEnabled}" MinWidth="30" />
+                        <TextBlock Text="H" ToolTip="Grid height" />
+                        <TextBox Text="{Binding Brush.GridHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Brush.IsGridSnapEnabled}" MinWidth="30" />
+                    </UniformGrid>
+                    <UniformGrid Columns="4">
+                        <TextBlock Text="X" ToolTip="Horizontal grid offset" />
+                        <TextBox Text="{Binding Brush.GridOffsetX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Brush.IsGridSnapEnabled}" MinWidth="30" />
+                        <TextBlock Text="Y" ToolTip="Vertical grid offset" />
+                        <TextBox Text="{Binding Brush.GridOffsetY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Brush.IsGridSnapEnabled}" MinWidth="30" />
+                    </UniformGrid>
+                </StackPanel>
+            </GroupBox>
             <GroupBox BorderThickness="1" Style="{StaticResource TileVisibleStyle}" Width="260">
                 <GroupBox.Header>
                     <CheckBox IsChecked="{Binding TilePicker.TileStyleActive, Mode=TwoWay}" Content="{x:Static p:Language.tool_paint_tile_title}" />

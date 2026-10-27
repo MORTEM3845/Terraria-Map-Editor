@@ -554,6 +554,7 @@ public class BrushToolBase : BaseTool
 
     protected void ProcessDraw(Vector2Int32 tile)
     {
+        tile = _wvm.Brush.SnapToGrid(tile);
         Vector2Int32 p = tile;
 
         if (_isConstraining)

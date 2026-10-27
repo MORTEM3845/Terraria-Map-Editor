@@ -41,6 +41,28 @@ public partial class BrushSettings : ReactiveObject
     private int _sprayTickMs = 100;
     private BrushShape _shape = ToolDefaultData.BrushShape;
 
+    [Reactive]
+    private bool _isGridSnapEnabled;
+    [Reactive]
+    private int _gridWidth = 1;
+    [Reactive]
+    private int _gridHeight = 1;
+    [Reactive]
+    private int _gridOffsetX;
+    [Reactive]
+    private int _gridOffsetY;
+
+    public Vector2Int32 SnapToGrid(Vector2Int32 point)
+    {
+        if (!IsGridSnapEnabled)
+        {
+            return point;
+        }
+        return new Vector2Int32(
+            GridSnapSettings.SnapAxis(point.X, GridOffsetX, GridWidth),
+            GridSnapSettings.SnapAxis(point.Y, GridOffsetY, GridHeight));
+    }
+
     public BrushSettings()
     {
         int width = ToolDefaultData.BrushWidth;
