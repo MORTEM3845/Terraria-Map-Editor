@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,6 +33,26 @@ public partial class TabbedPickerControl : UserControl
     {
         get => GetValue(SelectedValueProperty);
         set => SetValue(SelectedValueProperty, value);
+    }
+
+    public static readonly DependencyProperty IsMultiSelectProperty =
+        DependencyProperty.Register(nameof(IsMultiSelect), typeof(bool), typeof(TabbedPickerControl),
+            new PropertyMetadata(false, OnMultiSelectChanged));
+
+    public bool IsMultiSelect
+    {
+        get => (bool)GetValue(IsMultiSelectProperty);
+        set => SetValue(IsMultiSelectProperty, value);
+    }
+
+    public static readonly DependencyProperty SelectedValuesProperty =
+        DependencyProperty.Register(nameof(SelectedValues), typeof(IList), typeof(TabbedPickerControl),
+            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedValuesChanged));
+
+    public IList SelectedValues
+    {
+        get => (IList)GetValue(SelectedValuesProperty);
+        set => SetValue(SelectedValuesProperty, value);
     }
 
     public static readonly DependencyProperty SelectedValuePathProperty =
@@ -129,6 +150,7 @@ public partial class TabbedPickerControl : UserControl
     private string _searchText;
     private bool _isSyncingSelection;
     private bool _showMods; // false = Terraria tab, true = Mods tab
+    private IList _observedSelectedValues;
 
     private static readonly ConcurrentDictionary<(Type, string), PropertyInfo[]> _propertyCache = new();
 
@@ -183,6 +205,7 @@ public partial class TabbedPickerControl : UserControl
 
         PART_ItemsList.ItemsSource = _filteredView;
         SyncListSelectionFromValue();
+        SyncListSelectionFromValues();
     }
 
     #endregion
@@ -215,6 +238,46 @@ public partial class TabbedPickerControl : UserControl
     {
         if (d is TabbedPickerControl ctrl && !ctrl._isSyncingSelection)
             ctrl.SyncListSelectionFromValue();
+    }
+
+    private static void OnMultiSelectChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is TabbedPickerControl ctrl)
+        {
+            ctrl.PART_ItemsList.SelectionMode = (bool)e.NewValue ? SelectionMode.Multiple : SelectionMode.Single;
+            if ((bool)e.NewValue) ctrl.SyncListSelectionFromValues();
+        }
+    }
+
+    private static void OnSelectedValuesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is not TabbedPickerControl ctrl) return;
+        if (ctrl._observedSelectedValues is System.Collections.Specialized.INotifyCollectionChanged oldCollection)
+            oldCollection.CollectionChanged -= ctrl.SelectedValues_CollectionChanged;
+        ctrl._observedSelectedValues = e.NewValue as IList;
+        if (ctrl._observedSelectedValues is System.Collections.Specialized.INotifyCollectionChanged newCollection)
+            newCollection.CollectionChanged += ctrl.SelectedValues_CollectionChanged;
+        ctrl.SyncListSelectionFromValues();
+    }
+
+    private void SelectedValues_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        => SyncListSelectionFromValues();
+
+    private void SyncListSelectionFromValues()
+    {
+        if (_isSyncingSelection || !IsMultiSelect || SelectedValues == null || ItemsSource == null) return;
+        _isSyncingSelection = true;
+        try
+        {
+            PART_ItemsList.SelectedItems.Clear();
+            foreach (var item in PART_ItemsList.Items)
+            {
+                var value = GetPropertyValue(item, SelectedValuePath);
+                if (SelectedValues.Cast<object>().Any(selected => ValuesEqual(selected, value)))
+                    PART_ItemsList.SelectedItems.Add(item);
+            }
+        }
+        finally { _isSyncingSelection = false; }
     }
 
     private void SyncListSelectionFromValue()
@@ -382,6 +445,29 @@ public partial class TabbedPickerControl : UserControl
 
     private void ItemsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        if (_isSyncingSelection) return;
+        if (IsMultiSelect && SelectedValues != null && !string.IsNullOrEmpty(SelectedValuePath))
+        {
+            foreach (var item in e.RemovedItems)
+            {
+                // Filtering and tab switches remove hidden rows from the ListBox selection;
+                // keep their values so the mask survives a search or tab change.
+                if (!PART_ItemsList.Items.Contains(item)) continue;
+                var value = GetPropertyValue(item, SelectedValuePath);
+                if (SelectedValues.Cast<object>().FirstOrDefault(selected => ValuesEqual(selected, value)) is { } selected)
+                    SelectedValues.Remove(selected);
+            }
+            foreach (var item in e.AddedItems)
+            {
+                var value = GetPropertyValue(item, SelectedValuePath);
+                if (!SelectedValues.Cast<object>().Any(selected => ValuesEqual(selected, value)))
+                {
+                    var itemType = SelectedValues.GetType().GetGenericArguments().FirstOrDefault();
+                    SelectedValues.Add(itemType == null ? value : Convert.ChangeType(value, itemType));
+                }
+            }
+            return;
+        }
         if (PART_ItemsList.SelectedItem != null)
             SyncValueFromListSelection();
     }

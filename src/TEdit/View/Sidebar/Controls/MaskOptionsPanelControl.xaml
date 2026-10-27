@@ -70,6 +70,8 @@
                       Margin="0,0,0,4" />
             <controls:TabbedPickerControl
                       ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.TileBricksMask}, Mode=OneTime}"
+                      IsMultiSelect="True"
+                      SelectedValues="{Binding MaskSettings.TileMaskValues}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}"
                       SelectedValue="{Binding MaskSettings.TileMaskValue, Mode=TwoWay}"
                       SelectedValuePath="Id"
@@ -77,7 +79,8 @@
                       FilterMemberPath="Name"
                       FilterIdMemberPath="Id"
                       ModIdThreshold="{x:Static Terraria:WorldConfiguration.TileCount}"
-                      Placeholder="{x:Static p:Language.picker_search_tiles_placeholder}" />
+                      Placeholder="{x:Static p:Language.picker_search_tiles_placeholder}"
+                      ToolTip="Click multiple tile types to include them in the mask." />
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
             <ComboBox ItemsSource="{StaticResource MaskModeEnum}"

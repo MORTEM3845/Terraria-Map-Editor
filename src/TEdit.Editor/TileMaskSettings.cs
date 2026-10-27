@@ -1,5 +1,6 @@
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using System.Collections.ObjectModel;
 using TEdit.Terraria;
 
 namespace TEdit.Editor;
@@ -11,6 +12,8 @@ public partial class TileMaskSettings : ReactiveObject
     // Tile Type
     [Reactive] private MaskMode _tileMaskMode = MaskMode.Off;
     [Reactive] private int _tileMaskValue = -1; // -1 = empty/inactive
+    /// <summary>Tile types included in a Match mask. Empty preserves the legacy TileMaskValue behavior.</summary>
+    public ObservableCollection<int> TileMaskValues { get; } = new();
 
     // Wall Type
     [Reactive] private MaskMode _wallMaskMode = MaskMode.Off;
@@ -141,6 +144,8 @@ public partial class TileMaskSettings : ReactiveObject
     {
         TileMaskMode = MaskMode.Match;
         TileMaskValue = tile.IsActive ? tile.Type : -1;
+        TileMaskValues.Clear();
+        TileMaskValues.Add(TileMaskValue);
 
         WallMaskMode = MaskMode.Match;
         WallMaskValue = tile.Wall;
@@ -184,6 +189,7 @@ public partial class TileMaskSettings : ReactiveObject
     {
         TileMaskMode = MaskMode.Off;
         TileMaskValue = -1;
+        TileMaskValues.Clear();
         WallMaskMode = MaskMode.Off;
         WallMaskValue = 0;
         BrickStyleMaskMode = MaskMode.Off;
@@ -216,6 +222,19 @@ public partial class TileMaskSettings : ReactiveObject
     /// </summary>
     private bool PassesTileMask(Tile tile)
     {
+        if (TileMaskValues.Count > 0)
+        {
+            var matchesType = tile.IsActive
+                ? TileMaskValues.Contains(tile.Type)
+                : TileMaskValues.Contains(-1);
+            return TileMaskMode switch
+            {
+                MaskMode.Match => matchesType,
+                MaskMode.NotMatching => !matchesType,
+                _ => !tile.IsActive,
+            };
+        }
+
         return TileMaskMode switch
         {
             MaskMode.Match when TileMaskValue == -1 => !tile.IsActive,
