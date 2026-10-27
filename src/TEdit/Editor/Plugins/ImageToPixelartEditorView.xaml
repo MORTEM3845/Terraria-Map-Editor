@@ -11,7 +11,7 @@
         Icon="/TEdit;component/Images/tedit.ico"
         ResizeMode="CanResizeWithGrip"
         Topmost="False"
-        ExtendsContentIntoTitleBar="True"
+        ExtendsContentIntoTitleBar="False"
         WindowBackdropType="Mica"
         Width="1600"
         Height="800">

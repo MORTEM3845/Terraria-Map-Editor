@@ -5,7 +5,6 @@ namespace TEdit.Editor.Plugins
 {
     public class ImageToPixelartEditor : BasePlugin
     {
-        // Private field to keep a reference to the ImageToPixelartEditorView window.
         private ImageToPixelartEditorView _view;
 
         // Constructor for ImageToPixelartEditor.
@@ -14,26 +13,18 @@ namespace TEdit.Editor.Plugins
             Name = "Image To Pixelart Editor";
         }
 
-        // Method to execute the plugin functionality.
         public override void Execute()
         {
-            // No need to wait for world load due to the nature of this plugin.
-            // if (_wvm.CurrentWorld == null) return;
+            if (_view != null)
+            {
+                _view.Activate();
+                return;
+            }
 
-            // Initialize and show the ImageToPixelartEditorView window as a non-modal window.
-            _view = new ImageToPixelartEditorView(_wvm); // Pass down "_wvm" instance to the new window.
+            _view = new ImageToPixelartEditorView(_wvm);
             _view.Owner = Application.Current.MainWindow;
-            _view.Show(); // Open as non-modal window.
-
-            // Subscribe to the main window's Closed event.
-            Application.Current.MainWindow.Closed += MainWindow_Closed;
-        }
-
-        // Event handler for the main window's Closed event.
-        private void MainWindow_Closed(object sender, System.EventArgs e)
-        {
-            // Close the ImageToPixelartEditorView window if it is open.
-            _view?.Close();
+            _view.Closed += (_, _) => _view = null;
+            _view.Show();
         }
     }
 }
