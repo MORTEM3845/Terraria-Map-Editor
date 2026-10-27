@@ -1,0 +1,30 @@
+{
+  "scenario": "Erase Dirt and Stone using the tile type mask",
+  "worldFixture": "v1.4.4.4.wld.zip copied to the isolated diagnostic profile",
+  "coordinates": {
+    "dirt": { "x": 2108, "y": 202 },
+    "stone": { "x": 2109, "y": 202 }
+  },
+  "before": {
+    "maskTypes": [0],
+    "supportsMultipleTypes": false,
+    "attemptedTarget": "stone",
+    "tileAfterMaskEdit": { "isActive": true, "type": 1 },
+    "result": "Stone did not match the Dirt-only mask and remained active."
+  },
+  "after": {
+    "maskTypes": [0, 1],
+    "supportsMultipleTypes": true,
+    "tilesAfterMaskEdit": [
+      { "x": 2108, "y": 202, "isActive": false, "type": 0 },
+      { "x": 2109, "y": 202, "isActive": false, "type": 0 }
+    ],
+    "result": "The multi-type mask matched and erased both tiles."
+  },
+  "screenshots": {
+    "beforeEditor": "before-mask-result.png",
+    "beforeViewport": "before-mask-result-viewport.png",
+    "afterEditor": "after-multi-mask.png",
+    "afterViewport": "after-multi-mask-viewport.png"
+  }
+}
