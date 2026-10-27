@@ -489,7 +489,7 @@ public partial class MainWindow : FluentWindow
                     _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
                     break;
                 case "swap":
-                    _vm.TilePicker.Swap(Keyboard.Modifiers.HasFlag(ModifierKeys.Shift));
+                    _vm.TilePicker.Swap(_vm.MaskSettings, Keyboard.Modifiers.HasFlag(ModifierKeys.Shift));
                     break;
                 case "toggletile":
                     _vm.TilePicker.TileStyleActive = !_vm.TilePicker.TileStyleActive;
@@ -856,7 +856,7 @@ public partial class MainWindow : FluentWindow
                 _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
                 return true;
             case "toggle.swap":
-                _vm.TilePicker.Swap(Keyboard.Modifiers.HasFlag(ModifierKeys.Shift));
+                _vm.TilePicker.Swap(_vm.MaskSettings, Keyboard.Modifiers.HasFlag(ModifierKeys.Shift));
                 return true;
             case "toggle.tile":
                 _vm.TilePicker.TileStyleActive = !_vm.TilePicker.TileStyleActive;

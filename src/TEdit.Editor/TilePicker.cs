@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
@@ -149,13 +150,34 @@ public partial class TilePicker : ReactiveObject
         }
     }
 
-    public void Swap(bool wall = false)
+    public void Swap(TileMaskSettings maskSettings, bool wall = false)
     {
         switch (PaintMode)
         {
             case PaintMode.Liquid:
                 SwapLiquid();
                 break;
+            case PaintMode.TileAndWall:
+                SwapTargetAndMask(maskSettings, wall);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Exchange the active tile or wall target with its mask value.
+    /// The mask mode and all other paint and brush settings are left unchanged.
+    /// </summary>
+    public void SwapTargetAndMask(TileMaskSettings maskSettings, bool wall = false)
+    {
+        ArgumentNullException.ThrowIfNull(maskSettings);
+
+        if (wall)
+        {
+            (Wall, maskSettings.WallMaskValue) = (maskSettings.WallMaskValue, Wall);
+        }
+        else
+        {
+            (Tile, maskSettings.TileMaskValue) = (maskSettings.TileMaskValue, Tile);
         }
     }
 

@@ -19,6 +19,22 @@ public partial class PaletteSidebarView : UserControl
         }
     }
 
+    private void SwapTileTargetAndMask_Click(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is WorldViewModel vm)
+        {
+            vm.TilePicker.SwapTargetAndMask(vm.MaskSettings);
+        }
+    }
+
+    private void SwapWallTargetAndMask_Click(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is WorldViewModel vm)
+        {
+            vm.TilePicker.SwapTargetAndMask(vm.MaskSettings, wall: true);
+        }
+    }
+
     private async void ReplaceAll_Click(object sender, RoutedEventArgs e)
     {
         if (DataContext is WorldViewModel vm)
