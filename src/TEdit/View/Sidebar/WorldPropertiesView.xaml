@@ -668,7 +668,7 @@
     <TextBlock />
     <CheckBox IsChecked="{Binding CurrentWorld.DownedGolemBoss}" Content="{x:Static p:Language.tool_wp_boss_golem}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock />
-    <CheckBox IsChecked="{Binding CurrentWorld.DownedFishron}" Content="{x:Static p:Language.tool_wp_boss_dukefishron}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+    <CheckBox x:Name="DukeFishronDownedCheckBox" IsChecked="{Binding CurrentWorld.DownedFishron}" Content="{x:Static p:Language.tool_wp_boss_dukefishron}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock />
     <CheckBox IsChecked="{Binding CurrentWorld.DownedLunaticCultist}" Content="{x:Static p:Language.tool_wp_boss_lunaticcultist}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock />
@@ -685,7 +685,7 @@
     <TextBlock />
     <CheckBox IsChecked="{Binding CurrentWorld.DownedChristmasQueen}" Content="{x:Static p:Language.tool_wp_boss_icequeen}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock />
-    <CheckBox IsChecked="{Binding CurrentWorld.DownedFishron}" Content="{x:Static p:Language.tool_wp_boss_flyingdutchman}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+    <CheckBox x:Name="FlyingDutchmanDownedCheckBox" IsChecked="{Binding CurrentWorld.DownedPirates}" Content="{x:Static p:Language.tool_wp_boss_flyingdutchman}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock />
     <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialSolar}" Content="{x:Static p:Language.tool_wp_boss_solarpillar}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock />
