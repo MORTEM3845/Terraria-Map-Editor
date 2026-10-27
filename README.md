@@ -19,6 +19,8 @@ TEdit - Terraria Map Editor is a stand alone, open source map editor for Terrari
 - [GitHub Releases](https://github.com/TEdit/Terraria-Map-Editor/releases)
 - [Change Log](http://github.com/TEdit/Terraria-Map-Editor/commits/master)
 
+For a machine-wide installation under Program Files, download the `TEdit-*.msi` release asset (administrator rights required). The `TEdit-*-Setup.exe` asset remains a per-user installer under `%LOCALAPPDATA%` for installs without administrator rights. For a portable copy, download the versioned `TEdit-*.zip` archive.
+
 ## Languages
 
 Help update TEdit language support on crowdin https://crowdin.com/project/tedit/invite?h=9c3543b1a29200f5f240fc426a928b1b2694868
