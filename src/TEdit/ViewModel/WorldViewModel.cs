@@ -2422,6 +2422,7 @@ public partial class WorldViewModel : ReactiveObject
                 // Dispose old undo manager to release World reference and clear undo/redo buffers
                 _undoManager?.Dispose();
                 _undoManager = null;
+                this.RaisePropertyChanged(nameof(UndoManager));
             }
 
             this.RaiseAndSetIfChanged(ref _currentWorld, value);
@@ -2442,6 +2443,7 @@ public partial class WorldViewModel : ReactiveObject
                 };
 
                 _undoManager = new UndoManager(CurrentWorld, updateTiles, InvalidateMinimap);
+                this.RaisePropertyChanged(nameof(UndoManager));
 
                 // Reset both autosave and user save tracking
                 _lastSavedUndoIndex = 0;

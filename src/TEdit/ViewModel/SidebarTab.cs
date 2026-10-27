@@ -22,4 +22,5 @@ public enum SidebarTab
     Scripting = 13,
     NbtExplorer = 14,
     PlayerEditor = 15,
+    UndoHistory = 16,
 }

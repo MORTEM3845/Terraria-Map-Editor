@@ -370,6 +370,17 @@ public partial class WorldViewModel
         }
     }
 
+    public IReadOnlyList<Vector2Int32> SelectUndoHistoryIndex(int index)
+    {
+        var changedTiles = UndoManager?.SelectHistoryIndex(index) ?? Array.Empty<Vector2Int32>();
+        if (changedTiles.Count > 0)
+        {
+            UpdateRenderPixels(changedTiles);
+            _renderBlender?.UpdateTiles(changedTiles);
+        }
+        return changedTiles;
+    }
+
     private bool CanCopy()
     {
         return _selection.IsActive;

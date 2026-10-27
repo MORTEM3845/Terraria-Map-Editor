@@ -3241,4 +3241,16 @@ Would you like to enable error reporting?</value>
   <data name="telemetry_prompt_link" xml:space="preserve">
     <value>Read the full privacy policy</value>
   </data>
+  <data name="undo_history_title" xml:space="preserve">
+    <value>Undo and redo history</value>
+  </data>
+  <data name="undo_history_empty" xml:space="preserve">
+    <value>No undo history yet</value>
+  </data>
+  <data name="undo_history_initial_state" xml:space="preserve">
+    <value>Before first edit</value>
+  </data>
+  <data name="undo_history_edit" xml:space="preserve">
+    <value>After edit {0}</value>
+  </data>
 </root>

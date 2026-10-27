@@ -568,6 +568,10 @@
                             </TabItem.Header>
                             <Sidebar:PlayerEditorView />
                         </TabItem>
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="Undo and redo history">
+                            <TabItem.Header><ui:SymbolIcon Symbol="History20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <Sidebar:UndoHistoryView />
+                        </TabItem>
                 </TabControl>
             </Grid>
         </DockPanel>

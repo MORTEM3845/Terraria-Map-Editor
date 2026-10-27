@@ -1,0 +1,43 @@
+<UserControl x:Class="TEdit.View.Sidebar.UndoHistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:undo="clr-namespace:TEdit.Editor.Undo"
+             Background="{DynamicResource SidebarBackgroundBrush}">
+    <DockPanel>
+        <TextBlock x:Name="HistoryTitle" DockPanel.Dock="Top"
+                   Style="{DynamicResource SidebarPanelTitle}" />
+        <Grid Margin="8">
+            <ListBox x:Name="HistoryList"
+                     ItemsSource="{Binding UndoManager.HistoryEntries}"
+                     SelectedValuePath="Index"
+                     SelectedValue="{Binding UndoManager.CurrentIndex, Mode=OneWay}"
+                     SelectionChanged="HistoryList_SelectionChanged"
+                     BorderThickness="1"
+                     BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type undo:UndoHistoryEntry}">
+                        <TextBlock Text="{Binding Label}"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                                   Margin="4,3" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock x:Name="EmptyHistoryText"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding UndoManager.HistoryCount}" Value="0">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+    </DockPanel>
+</UserControl>

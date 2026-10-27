@@ -11,6 +11,7 @@ using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.ViewModel;
 using TEdit.Utility;
+using TEdit.Properties;
 
 namespace TEdit.Editor.Undo;
 
@@ -150,10 +151,28 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
     private int _currentIndex = 0;
     private int _maxIndex = 0;
+    private bool _hasHistory;
     private Task _pendingClose;
 
     public int CurrentIndex => _currentIndex;
+    private bool HasHistory => _hasHistory;
+    private int MaximumHistoryIndex => HasHistory ? Math.Max(_currentIndex, _maxIndex + 1) : 0;
+    public IReadOnlyList<UndoHistoryEntry> HistoryEntries => !HasHistory
+        ? Array.Empty<UndoHistoryEntry>()
+        : Enumerable.Range(0, MaximumHistoryIndex + 1)
+            .Select(index => new UndoHistoryEntry(index, index == 0
+                ? Language.ResourceManager.GetString("undo_history_initial_state", Language.Culture) ?? "Before first edit"
+                : string.Format(Language.Culture, Language.ResourceManager.GetString("undo_history_edit", Language.Culture) ?? "After edit {0}", index)))
+            .ToArray();
+    public int HistoryCount => HasHistory ? MaximumHistoryIndex : 0;
     public string CacheDirectory => Dir;
+
+    private void NotifyHistoryChanged()
+    {
+        this.RaisePropertyChanged(nameof(CurrentIndex));
+        this.RaisePropertyChanged(nameof(HistoryEntries));
+        this.RaisePropertyChanged(nameof(HistoryCount));
+    }
 
 
 
@@ -188,10 +207,12 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
         ValidateAndRemoveChests();
         if (updateMax) { _maxIndex = _currentIndex; }
+        _hasHistory = true;
         _currentIndex++;
         _pendingClose = _buffer.CloseAsync();
         CreateBuffer();
         _undoApplied?.Invoke();
+        NotifyHistoryChanged();
 
     }
 
@@ -227,8 +248,10 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
         _currentIndex = 0;
         _maxIndex = 0;
+        _hasHistory = false;
         CreateBuffer();
         _undoApplied?.Invoke();
+        NotifyHistoryChanged();
         return result;
     }
 
@@ -375,6 +398,8 @@ public partial class UndoManager : ReactiveObject, IUndoManager
             redo.Dispose();
             _currentIndex--;
             CreateBuffer();
+            _undoApplied?.Invoke();
+            NotifyHistoryChanged();
             return changedTiles;
         }
 
@@ -412,6 +437,7 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         _currentIndex--; // move index back one, create a new buffer
         CreateBuffer();
         _undoApplied?.Invoke();
+        NotifyHistoryChanged();
 
         return changedTiles;
     }
@@ -495,6 +521,30 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         return changedTiles;
     }
 
+    /// <summary>Moves the world to the selected state in the current undo/redo timeline.</summary>
+    public IReadOnlyList<Vector2Int32> SelectHistoryIndex(int index)
+    {
+        if (index < 0 || index > MaximumHistoryIndex)
+            throw new ArgumentOutOfRangeException(nameof(index));
+
+        var changedTiles = new List<Vector2Int32>();
+        while (_currentIndex > index)
+        {
+            int previousIndex = _currentIndex;
+            changedTiles.AddRange(Undo());
+            if (_currentIndex == previousIndex)
+                break;
+        }
+        while (_currentIndex < index)
+        {
+            int previousIndex = _currentIndex;
+            changedTiles.AddRange(Redo());
+            if (_currentIndex == previousIndex)
+                break;
+        }
+        return changedTiles;
+    }
+
     #region IUndoManager
 
     public void SaveTile(World world, Vector2Int32 location, bool removeEntities = false) =>
@@ -562,3 +612,5 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
     #endregion
 }
+
+public sealed record UndoHistoryEntry(int Index, string Label);
