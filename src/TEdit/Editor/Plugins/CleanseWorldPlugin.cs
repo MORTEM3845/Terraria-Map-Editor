@@ -10,7 +10,7 @@ namespace TEdit.Editor.Plugins
         public CleanseWorldPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Cleanse World";
+            Name = "CleanseWorld";
         }
 
         public override void Execute()

@@ -11,7 +11,7 @@ namespace TEdit.Editor.Plugins
         // Constructor for ImageToPixelartEditor.
         public ImageToPixelartEditor(WorldViewModel worldViewModel) : base(worldViewModel)
         {
-            Name = "Image To Pixelart Editor";
+            Name = "ImageToPixelartEditor";
         }
 
         // Method to execute the plugin functionality.

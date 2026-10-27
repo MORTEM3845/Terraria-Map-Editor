@@ -11,7 +11,7 @@ public class RemoveAllChestsPlugin : BasePlugin
     public RemoveAllChestsPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Remove All Chests";
+        Name = "RemoveAllChests";
     }
 
     public override async void Execute()

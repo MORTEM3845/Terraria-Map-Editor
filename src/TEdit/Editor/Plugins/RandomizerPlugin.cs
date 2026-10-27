@@ -13,7 +13,7 @@ public class RandomizerPlugin : BasePlugin
     public RandomizerPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Randomize All Blocks in the World";
+        Name = "Randomizer";
     }
 
     public override void Execute()

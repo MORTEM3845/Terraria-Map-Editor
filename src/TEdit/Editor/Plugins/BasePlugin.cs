@@ -14,5 +14,7 @@ public abstract class BasePlugin : ReactiveObject, IPlugin
 
     public string Name { get; protected set; }
 
+    public string Title => Properties.Language.ResourceManager.GetString($"plugin_{Name.ToLowerInvariant()}_title") ?? Name;
+
     public abstract void Execute();
 }

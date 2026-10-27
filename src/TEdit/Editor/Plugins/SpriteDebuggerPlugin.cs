@@ -9,7 +9,7 @@ public sealed class SpriteDebuggerPlugin : BasePlugin
     public SpriteDebuggerPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Generate Debug Sprites";
+        Name = "SpriteDebugger";
     }
 
     public override void Execute()

@@ -8,7 +8,7 @@ public sealed class TextureExportDebugPlugin : BasePlugin
     public TextureExportDebugPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Export Textures (DEBUG)";
+        Name = "TextureExportDebug";
     }
 
     public override async void Execute()

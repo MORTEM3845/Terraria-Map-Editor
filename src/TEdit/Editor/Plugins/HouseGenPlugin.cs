@@ -36,7 +36,7 @@ public partial class HouseGenPlugin : BasePlugin
     public HouseGenPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Procedural House Generator";
+        Name = "HouseGen";
     }
 
     public override void Execute()

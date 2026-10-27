@@ -9,7 +9,7 @@ public sealed class SandSettlePlugin : BasePlugin
     public SandSettlePlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Settle Sand";
+        Name = "SandSettle";
     }
 
     public override void Execute()

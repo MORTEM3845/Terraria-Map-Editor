@@ -17,7 +17,7 @@ namespace TEdit.Editor.Plugins
         // Constructor for PlayerMapRenderer
         public PlayerMapRenderer(WorldViewModel worldViewModel) : base(worldViewModel)
         {
-            Name = "Render Player .map File";
+            Name = "PlayerMapRenderer";
         }
 
         // Method to execute the plugin functionality

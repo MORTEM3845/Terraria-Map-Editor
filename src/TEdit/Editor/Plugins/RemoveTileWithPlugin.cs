@@ -12,7 +12,7 @@ namespace TEdit.Editor.Plugins
         public RemoveTileWithPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Remove Sprite, Block, or Wall";
+            Name = "RemoveTileWith";
         }
 
         public override async void Execute()

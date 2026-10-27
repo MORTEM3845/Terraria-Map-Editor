@@ -11,7 +11,7 @@ public class RemoveAllUnlockedChestsPlugin : BasePlugin
     public RemoveAllUnlockedChestsPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Remove All Unlocked Chests";
+        Name = "RemoveAllUnlockedChests";
     }
 
     private short[] _lockedChestUs = new short[] { 72, 144, 828, 864, 900, 936, 972 };

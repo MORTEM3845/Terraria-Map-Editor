@@ -3241,4 +3241,52 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Исправление фонового пробела</value>
   </data>
+  <data name="plugin_blockshuffle_title" xml:space="preserve">
+    <value>Перемешать расположение блоков</value>
+  </data>
+  <data name="plugin_cleanseworld_title" xml:space="preserve">
+    <value>Очистить мир</value>
+  </data>
+  <data name="plugin_housegen_title" xml:space="preserve">
+    <value>Генератор домов</value>
+  </data>
+  <data name="plugin_imagetopixelarteditor_title" xml:space="preserve">
+    <value>Преобразование изображения в пиксель-арт</value>
+  </data>
+  <data name="plugin_playermaprenderer_title" xml:space="preserve">
+    <value>Создать .map файл игрока</value>
+  </data>
+  <data name="plugin_randomizer_title" xml:space="preserve">
+    <value>Перемешать все блоки в мире</value>
+  </data>
+  <data name="plugin_removeallchests_title" xml:space="preserve">
+    <value>Удалить все сундуки</value>
+  </data>
+  <data name="plugin_removeallunlockedchests_title" xml:space="preserve">
+    <value>Удалить все незапертые сундуки</value>
+  </data>
+  <data name="plugin_removetilewith_title" xml:space="preserve">
+    <value>Удалить спрайт, блок или стену</value>
+  </data>
+  <data name="plugin_replay_title" xml:space="preserve">
+    <value>Повтор</value>
+  </data>
+  <data name="plugin_sandsettle_title" xml:space="preserve">
+    <value>Осадить песок</value>
+  </data>
+  <data name="plugin_simpleoregenerator_title" xml:space="preserve">
+    <value>Генератор руды</value>
+  </data>
+  <data name="plugin_spritedebugger_title" xml:space="preserve">
+    <value>Создать отладочные спрайты</value>
+  </data>
+  <data name="plugin_textstatue_title" xml:space="preserve">
+    <value>Создать текстовые статуи</value>
+  </data>
+  <data name="plugin_textureexportdebug_title" xml:space="preserve">
+    <value>Экспорт текстур (ОТЛАДКА)</value>
+  </data>
+  <data name="plugin_unlockallchests_title" xml:space="preserve">
+    <value>Открыть все сундуки</value>
+  </data>
 </root>

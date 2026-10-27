@@ -8,7 +8,7 @@ namespace TEdit.Editor.Plugins;
 
 public sealed class BlockShufflePlugin : BasePlugin //Originally: HackedPlugin, BlockShuffle
 {
-    public BlockShufflePlugin(WorldViewModel worldViewModel) : base(worldViewModel) { Name = "Shuffle Block Locations"; }
+    public BlockShufflePlugin(WorldViewModel worldViewModel) : base(worldViewModel) { Name = "BlockShuffle"; }
 
     public override void Execute()
     {

@@ -3241,4 +3241,52 @@ Would you like to enable error reporting?</value>
   <data name="telemetry_prompt_link" xml:space="preserve">
     <value>Read the full privacy policy</value>
   </data>
+  <data name="plugin_blockshuffle_title" xml:space="preserve">
+    <value>Shuffle Block Locations</value>
+  </data>
+  <data name="plugin_cleanseworld_title" xml:space="preserve">
+    <value>Cleanse World</value>
+  </data>
+  <data name="plugin_housegen_title" xml:space="preserve">
+    <value>Procedural House Generator</value>
+  </data>
+  <data name="plugin_imagetopixelarteditor_title" xml:space="preserve">
+    <value>Image To Pixelart Editor</value>
+  </data>
+  <data name="plugin_playermaprenderer_title" xml:space="preserve">
+    <value>Render Player .map File</value>
+  </data>
+  <data name="plugin_randomizer_title" xml:space="preserve">
+    <value>Randomize All Blocks in the World</value>
+  </data>
+  <data name="plugin_removeallchests_title" xml:space="preserve">
+    <value>Remove All Chests</value>
+  </data>
+  <data name="plugin_removeallunlockedchests_title" xml:space="preserve">
+    <value>Remove All Unlocked Chests</value>
+  </data>
+  <data name="plugin_removetilewith_title" xml:space="preserve">
+    <value>Remove Sprite, Block, or Wall</value>
+  </data>
+  <data name="plugin_replay_title" xml:space="preserve">
+    <value>Replay</value>
+  </data>
+  <data name="plugin_sandsettle_title" xml:space="preserve">
+    <value>Settle Sand</value>
+  </data>
+  <data name="plugin_simpleoregenerator_title" xml:space="preserve">
+    <value>Simple Ore Generator</value>
+  </data>
+  <data name="plugin_spritedebugger_title" xml:space="preserve">
+    <value>Generate Debug Sprites</value>
+  </data>
+  <data name="plugin_textstatue_title" xml:space="preserve">
+    <value>Generate Text Statues</value>
+  </data>
+  <data name="plugin_textureexportdebug_title" xml:space="preserve">
+    <value>Export Textures (DEBUG)</value>
+  </data>
+  <data name="plugin_unlockallchests_title" xml:space="preserve">
+    <value>Unlock All Chests</value>
+  </data>
 </root>

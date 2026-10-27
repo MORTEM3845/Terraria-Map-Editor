@@ -19,7 +19,7 @@ namespace TEdit.Editor.Plugins
         {
             _noiseGenerator = new PerlinNoise(1);
             _random = new Random();
-            Name = "Simple Ore Generator";
+            Name = "SimpleOreGenerator";
         }
 
         public override void Execute()
