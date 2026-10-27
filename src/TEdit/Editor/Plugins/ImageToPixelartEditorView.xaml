@@ -12,7 +12,6 @@
         ResizeMode="CanResizeWithGrip"
         Topmost="False"
         ExtendsContentIntoTitleBar="False"
-        WindowBackdropType="Mica"
         Width="1600"
         Height="800">
 
