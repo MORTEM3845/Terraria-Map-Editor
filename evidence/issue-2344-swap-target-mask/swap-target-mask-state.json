@@ -1,0 +1,82 @@
+{
+  "issue": "https://github.com/TEdit/Terraria-Map-Editor/issues/2344",
+  "diagnosticSpider": {
+    "pullRequest": 2511,
+    "branch": "MORTEM3845/codex/diagnostic-spider",
+    "build": "Release with LocalDiagnostics=true",
+    "world": {
+      "title": "1444",
+      "file": "diagnostic-world.wld",
+      "width": 4200,
+      "height": 1200,
+      "version": 273
+    }
+  },
+  "swap": {
+    "tool": "Pencil",
+    "paintMode": "TileAndWall",
+    "before": {
+      "tileTarget": 1,
+      "tileMaskMode": "Match",
+      "tileMaskValue": 0,
+      "brush": {
+        "width": 20,
+        "height": 20,
+        "shape": "Square",
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "isSpray": false,
+        "sprayDensity": 15
+      }
+    },
+    "after": {
+      "tileTarget": 0,
+      "tileMaskMode": "Match",
+      "tileMaskValue": 1,
+      "brush": {
+        "width": 20,
+        "height": 20,
+        "shape": "Square",
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "isSpray": false,
+        "sprayDensity": 15
+      }
+    }
+  },
+  "tileInspection": {
+    "coordinate": { "x": 2108, "y": 202 },
+    "beforeSwap": {
+      "isActive": false,
+      "type": 0,
+      "wall": 0,
+      "liquidAmount": 0
+    },
+    "afterSwapAndSave": {
+      "isActive": false,
+      "type": 0,
+      "wall": 0,
+      "liquidAmount": 0
+    },
+    "paintRequest": {
+      "type": 0,
+      "status": "completed",
+      "result": { "isActive": false, "type": 0 },
+      "note": "The active Match mask required tile type 1, so the initially empty tile remained unchanged."
+    },
+    "save": {
+      "status": "completed",
+      "bytes": 2990606
+    }
+  },
+  "captures": {
+    "baselineBeforeFeature": "swap-target-mask-before.png",
+    "featureBeforeSwapAction": "swap-target-mask-before-action.png",
+    "featureAfterSwapAction": "swap-target-mask-after.png",
+    "worldViewportBeforeSwapAction": "swap-target-mask-before-action-viewport.png",
+    "worldViewportBefore": "swap-target-mask-before-viewport.png",
+    "worldViewportAfter": "swap-target-mask-after-viewport.png"
+  }
+}
