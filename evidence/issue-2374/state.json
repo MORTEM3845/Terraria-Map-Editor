@@ -1,0 +1,19 @@
+{
+  "profile": "Disposable diagnostic profile",
+  "before": {
+    "ShowTextures": true,
+    "TextureVisibilityZoomLevel": 6,
+    "MaxBackups": 1
+  },
+  "changedBeforeRestart": {
+    "ShowTextures": false,
+    "TextureVisibilityZoomLevel": 8,
+    "MaxBackups": 4
+  },
+  "afterRestart": {
+    "ShowTextures": false,
+    "TextureVisibilityZoomLevel": 8,
+    "MaxBackups": 4
+  },
+  "verifiedAfterRestart": true
+}
